@@ -6,17 +6,17 @@ class KeyLogger:
 
 	def whichKey(self):
 		print('keyboard event captured')
-		print(KeyLogger.__dict__)
+		#print(KeyLogger.__dict__)
 
 	def captureKey(self):
 		with open(kfile,'a') as f:
 			ckey=input()
 			f.write(ckey+'\n')
-		print(ckey)
+		#print(ckey)
 
 def klog():
 	if not os.path.exists(kfile):
-		with open(kfile, 'w+'): pass    # create a new file if not exists
+		with open(kfile,'w+'): pass    # create a new file if not exists
 
 	kl=KeyLogger()
 	#kl.whichKey()

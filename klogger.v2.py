@@ -1,26 +1,24 @@
-import sys,os,logging
+import os
 
-kfile=os.path.join(os.path.dirname(os.path.abspath(__file__)),'.kfile')
+kfile=os.path.join(os.path.dirname(os.path.abspath(__file__)),'.kfile')			# ok
+#kfile=os.path.join(os.getcwd(),'.kfile')                                   # ok
 
 class KeyLogger:
-
-	def whichKey(self):
-		print('keyboard event captured')
-		print(KeyLogger.__dict__)
-
 	def captureKey(self):
 		with open(kfile,'a') as f:
-			ckey=input()
-			f.write(ckey+'\n')
-		print(ckey)
+			while True:
+				ckey=input()
+				f.write(ckey+'\n')
+				#print(ckey)
+
+def logfile():
+	if not os.path.exists(kfile):
+		with open(kfile, 'w+'): pass    # create a new file if not exists
 
 def klog():
-	if not os.path.exists(kfile):
-		with open(kfile, 'a+'): pass    # create a new file if not exists
-
 	kl=KeyLogger()
-	#kl.whichKey()
 	kl.captureKey()
 
 if __name__=='__main__':
+	logfile()
 	klog()
